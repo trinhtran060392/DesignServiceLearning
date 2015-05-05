@@ -22,12 +22,13 @@ public class StudentService extends MongoAbstractCRUD<Student> {
   
   @Inject
   public StudentService(DataFactory mongo) {
-    this.col = mongo.getDatabase("angularTest").getCollection(col_name);
+    this.col = mongo.getDatabase().getCollection(col_name);
     
   }
   @Override
   public Student transform(DBObject source) {
     Student student = factory.create((String)source.get("name"), (String)source.get("age"), (String)source.get("score"),(String) source.get("classRoom"), (String)source.get("pass"));
+    student.put("_id", source.get("_id"));
     
     return student;
   }

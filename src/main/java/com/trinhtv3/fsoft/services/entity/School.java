@@ -25,4 +25,14 @@ public class School extends BasicDBObject {
   public String getAddress() {
     return this.getString("address");
   }
+  
+  public void setName(String id) {
+    this.put("_id", id);
+  }
+  
+  public void setAddress(String address) {
+    
+    this.put("address", address);
+  }
+  
 }

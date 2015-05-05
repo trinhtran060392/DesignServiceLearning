@@ -16,6 +16,7 @@ public class SchoolReference extends Reference<School>{
     super(id);
     this.schoolService = service;
   }
+  
   @Override
   public School get() {
     return this.schoolService.get(id);

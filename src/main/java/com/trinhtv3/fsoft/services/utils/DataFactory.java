@@ -8,6 +8,7 @@ import com.mongodb.MongoClient;
 public class DataFactory {
   private static final MongoClient client;
   
+  private final String dbname = "angularTest";
   static {
     try {
       client = new MongoClient();
@@ -16,11 +17,11 @@ public class DataFactory {
     }
   }
   
-  public DB getDatabase(String dbName) {
-    return client.getDB(dbName);
+  public DB getDatabase() {
+    return client.getDB(this.dbname);
   }
   
-  public void dropDatabase(String dbName) {
-    client.dropDatabase(dbName);
+  public void dropDatabase() {
+    client.dropDatabase(this.dbname);
   }
 }

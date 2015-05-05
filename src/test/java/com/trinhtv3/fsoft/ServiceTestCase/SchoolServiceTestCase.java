@@ -26,7 +26,7 @@ public class SchoolServiceTestCase extends AbstractTestCase {
   
   @AfterMethod
   public void tearDown() {
-    mongoService.dropDatabase("angularTest");
+    mongoService.dropDatabase();
   }
   
   @Test
@@ -34,7 +34,34 @@ public class SchoolServiceTestCase extends AbstractTestCase {
     initData();
     
     Assert.assertEquals(service.count(), 100);
+    
+    School school = schoolFactory.create("test", "address");
+    service.create(school);
+    
+    Assert.assertEquals(service.count(), 101);
+    
   }
+  
+  @Test
+  public void testDeleteSchool() {
+    initData();
+    
+    service.delete("School1");
+    
+    Assert.assertEquals(service.count(), 99);
+  }
+  
+  @Test
+  public void testUpdateSchool() {
+    initData();
+    
+    School school = service.get("School1");
+    school.setAddress("UpdatedAddress");
+    service.update(school);
+    
+    Assert.assertEquals(service.get("School1").getAddress(), "UpdatedAddress");
+  }
+  
   public void initData() {
     
     for (int i = 1; i <= 100; i ++) {
