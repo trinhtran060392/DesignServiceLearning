@@ -37,7 +37,7 @@ public class SchoolServiceTestCase extends AbstractTestCase {
   }
   public void initData() {
     
-    for (int i = 1; i < 100; i ++) {
+    for (int i = 1; i <= 100; i ++) {
       
       String name = "School"+ i;
       String address = "Address"+ i;

@@ -15,11 +15,13 @@ public class SchoolService extends MongoAbstractCRUD<School> {
   @Inject
   private SchoolFactory factory;
   
+  @Inject
   public SchoolService(DataFactory mongo) {
     
     this.col = mongo.getDatabase("angularTest").getCollection(col_name);
   
   }
+  
   @Override
   public School transform(DBObject source) {
     School school = factory.create((String) source.get("name"), (String) source.get("address"));

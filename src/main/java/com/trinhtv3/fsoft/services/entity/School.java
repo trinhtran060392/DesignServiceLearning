@@ -1,5 +1,6 @@
 package com.trinhtv3.fsoft.services.entity;
 
+import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
 import com.mongodb.BasicDBObject;
 
@@ -10,7 +11,8 @@ public class School extends BasicDBObject {
    */
   private static final long serialVersionUID = 1L;
 
-  public School(@Assisted("_id") String name,@Assisted("address") String address) {
+  @Inject
+  public School(@Assisted("_id") String name, @Assisted("address") String address) {
     
     this.put("_id", name);
     this.put("address", address);
