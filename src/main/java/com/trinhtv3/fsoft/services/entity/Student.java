@@ -60,6 +60,10 @@ public class Student extends BasicDBObject{
     this.put("school", school.toJSon());
   }
   
+  public void setName(String name) {
+    this.put("name", name);
+  }
+  
   public SchoolReference getSchool() {
     Object obj = this.get("school");
     

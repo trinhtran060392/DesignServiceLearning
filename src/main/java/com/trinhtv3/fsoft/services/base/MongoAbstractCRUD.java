@@ -1,7 +1,11 @@
 package com.trinhtv3.fsoft.services.base;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 
 public abstract class MongoAbstractCRUD<T extends DBObject> {
@@ -20,7 +24,6 @@ public abstract class MongoAbstractCRUD<T extends DBObject> {
   public void update(T obj) {
     
     this.col.save(obj);
-    
   }
   
   public void delete(T obj) {
@@ -39,4 +42,23 @@ public abstract class MongoAbstractCRUD<T extends DBObject> {
   
   public abstract T transform(DBObject source);
   
+  public List<T> find(DBObject query) {
+    
+    List<T> list = new ArrayList<T>();
+    DBCursor cursor = this.col.find(query);
+    try {
+      while (cursor.hasNext()) {
+        
+        DBObject object = cursor.next();
+        T instance = transform(object);
+        
+        list.add(instance);
+      }
+    }
+    finally {
+      cursor.close();
+    }
+    return list;
+    
+  }
 }

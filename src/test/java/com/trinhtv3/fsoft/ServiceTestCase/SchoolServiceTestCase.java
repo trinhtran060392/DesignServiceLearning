@@ -62,7 +62,7 @@ public class SchoolServiceTestCase extends AbstractTestCase {
     Assert.assertEquals(service.get("School1").getAddress(), "UpdatedAddress");
   }
   
-  public void initData() {
+  private void initData() {
     
     for (int i = 1; i <= 100; i ++) {
       
