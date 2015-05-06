@@ -74,4 +74,14 @@ public abstract class MongoAbstractCRUD<T extends DBObject> {
     }
     return list;
   }
+  
+  public T findById(String id) {
+    
+    DBObject object = new BasicDBObject().append("_id", id);
+    DBObject result = this.col.findOne(object);
+    T instance = transform(result);
+    
+    return instance;
+    
+  }
 }
