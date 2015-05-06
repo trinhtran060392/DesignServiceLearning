@@ -105,6 +105,12 @@ public class StudentServiceTestCase extends AbstractTestCase {
     
   }
   
+  @Test
+  public void testGetAllStudents() {
+    initData();
+    Assert.assertEquals(service.getAll().size(), 100);
+  }
+  
   private void initData() {
     
     for (int i = 1; i <= 100; i ++) {

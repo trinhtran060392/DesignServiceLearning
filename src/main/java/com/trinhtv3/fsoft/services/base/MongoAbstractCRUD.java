@@ -61,4 +61,17 @@ public abstract class MongoAbstractCRUD<T extends DBObject> {
     return list;
     
   }
+  
+  public List<T> getAll() {
+    
+    List<T> list = new ArrayList<T>();
+    DBCursor cursor = this.col.find();
+    
+    while (cursor.hasNext()) {
+      DBObject object = cursor.next();
+      T instance = transform(object);
+      list.add(instance);
+    }
+    return list;
+  }
 }
